@@ -1,12 +1,10 @@
 #include "vbo.h"
 
-VBO vbo_create(GLint type) {
-	VBO self;
-	memset(&self, 0, sizeof(VBO));
-	self.type = type;
+void vbo_init(VBO* self, GLint type) {
+	memset(self, 0, sizeof(VBO));
+	self->type = type;
 
-	glGenBuffers(1, &self.handle);
-	return self;
+	glGenBuffers(1, &self->handle);
 }
 
 void vbo_bind(VBO* self) {

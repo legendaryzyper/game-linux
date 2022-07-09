@@ -9,7 +9,7 @@ typedef struct VBO {
 	GLint type;
 } VBO;
 
-VBO vbo_create(GLint type);
+void vbo_init(VBO* self, GLint type);
 void vbo_bind(VBO* self);
 void vbo_destroy(VBO* self);
 void vbo_buffer(VBO* self, void* data, GLsizeiptr size);

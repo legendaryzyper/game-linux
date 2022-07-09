@@ -1,18 +1,15 @@
 #include "camera.h"
 #include "../gfx/window.h"
 
-Camera camera_create(f32 fov) {
-	Camera self;
-	memset(&self, 0, sizeof(Camera));
+void camera_init(Camera* self, f32 fov) {
+	memset(self, 0, sizeof(Camera));
 
-	self.fov = fov;
-	self.aspect = (f32)window.size.x / window.size.y;
-	self.znear = 0.1f;
-	self.zfar = 100.0f;
-	self.yaw = 0;
-	self.pitch = 0.0f;
-
-	return self;
+	self->fov = fov;
+	self->aspect = (f32)window.size.x / window.size.y;
+	self->znear = 0.1f;
+	self->zfar = 100.0f;
+	self->yaw = 0.0f;
+	self->pitch = 0.0f;
 }
 
 void camera_update(Camera* self) {

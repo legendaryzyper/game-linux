@@ -1,10 +1,8 @@
 #include "vao.h"
 
-VAO vao_create(void) {
-	VAO self;
-	memset(&self, 0, sizeof(VAO));
-	glGenVertexArrays(1, &self.handle);
-	return self;
+void vao_init(VAO* self) {
+	memset(self, 0, sizeof(VAO));
+	glGenVertexArrays(1, &self->handle);
 }
 
 void vao_bind(VAO* self) {

@@ -1,5 +1,4 @@
 #include "direction.h"
-#include <string.h>
 
 const ivec3s DIRECTION_IVEC[6] = {
     {{  0,  0, -1 }},

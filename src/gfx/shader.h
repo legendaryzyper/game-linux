@@ -16,7 +16,7 @@ typedef struct Shader {
 	GLuint handle, vs_handle, fs_handle;
 } Shader;
 
-Shader shader_create(const char* vs_path, const char* fs_path);
+void shader_init(Shader* self, const char* vs_path, const char* fs_path);
 void shader_destroy(Shader* self);
 void shader_bind(Shader* self);
 void shader_uniform_mat4(Shader* self, const char* name, mat4s m);

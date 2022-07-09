@@ -4,8 +4,8 @@ State state;
 
 void init(void) {
 	state.window = &window;
-	state.shader = shader_create("res/shaders/default.vert", "res/shaders/default.frag");
-	state.texture = texture_create("res/textures/grass.jpg");
+	shader_init(&state.shader, "res/shaders/default.vert", "res/shaders/default.frag");
+	texture_init(&state.texture, "res/textures/grass.jpg");
 	world_init(&state.world);
 
 	glEnable(GL_DEPTH_TEST);

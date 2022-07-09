@@ -22,18 +22,16 @@ static GLuint _compile(const char* path, GLenum type) {
     return handle;
 }
 
-Shader shader_create(const char* vs_path, const char* fs_path) {
-	Shader self;
-    memset(&self, 0, sizeof(Shader));
-	self.vs_handle = _compile(vs_path, GL_VERTEX_SHADER);
-	self.fs_handle = _compile(fs_path, GL_FRAGMENT_SHADER);
-	self.handle = glCreateProgram();
+void shader_init(Shader* self, const char* vs_path, const char* fs_path) {
+    memset(self, 0, sizeof(Shader));
+	self->vs_handle = _compile(vs_path, GL_VERTEX_SHADER);
+	self->fs_handle = _compile(fs_path, GL_FRAGMENT_SHADER);
+	self->handle = glCreateProgram();
 
-	glAttachShader(self.handle, self.vs_handle);
-	glAttachShader(self.handle, self.fs_handle);
+	glAttachShader(self->handle, self->vs_handle);
+	glAttachShader(self->handle, self->fs_handle);
 
-	glLinkProgram(self.handle);
-	return self;
+	glLinkProgram(self->handle);
 }
 
 void shader_destroy(Shader* self) {

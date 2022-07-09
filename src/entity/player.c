@@ -3,7 +3,7 @@
 
 void player_init(Player* self) {
 	memset(self, 0, sizeof(Player));
-	self->camera = camera_create(radians(45));
+	camera_init(&self->camera, radians(45));
 }
 
 void player_tick(Player* self) {

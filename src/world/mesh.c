@@ -42,9 +42,9 @@ struct {
 void mesh_init(Mesh* self) {
 	memset(self, 0, sizeof(Mesh));
 
-	self->vao = vao_create();
-	self->vbo = vbo_create(GL_ARRAY_BUFFER);
-	self->ebo = vbo_create(GL_ELEMENT_ARRAY_BUFFER);
+    vao_init(&self->vao);
+	vbo_init(&self->vbo, GL_ARRAY_BUFFER);
+	vbo_init(&self->ebo, GL_ELEMENT_ARRAY_BUFFER);
 }
 
 void mesh_prepare(Mesh* self) {

@@ -8,7 +8,7 @@ typedef struct Texture {
 	GLuint handle;
 } Texture;
 
-Texture texture_create(const char* path);
+void texture_init(Texture* self, const char* path);
 void texture_bind(Texture* self);
 void texture_destroy(Texture* self);
 

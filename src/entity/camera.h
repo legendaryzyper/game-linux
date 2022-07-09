@@ -10,7 +10,7 @@ typedef struct Camera {
 	f32 pitch, yaw, fov, aspect, znear, zfar;
 } Camera;
 
-Camera camera_create(f32 fov);
+void camera_init(Camera* self, f32 fov);
 void camera_update(Camera* self);
 
 #endif
