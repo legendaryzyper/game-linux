@@ -95,6 +95,7 @@ static void _render(void) {
 
 static void _destroy(void) {
 	window.destroy();
+    glfwDestroyWindow(window.handle);
 	glfwTerminate();
 }
 
@@ -117,7 +118,7 @@ void window_loop(void) {
 			window.ticks = 0;
 			window.last_second = now;
 
-			printf("FPS: %lu | TPS: %lu\n", window.fps, window.tps);
+			printf("FPS: %" PRIu64 " | TPS: %" PRIu64 "\n", window.fps, window.tps);
 		}
 
 		const u64 NS_PER_TICK = (NS_PER_SECOND / window.tickrate);

@@ -19,8 +19,6 @@ void camera_update(Camera* self) {
 	self->pitch = clamp(self->pitch, -PI_2 + 0.1f, PI_2 - 0.1f);
 	self->yaw = self->yaw < -PI ? PI : self->yaw > PI ? -PI : self->yaw;
 
-    /* printf("%f %f\n", self->pitch, self->yaw); */
-
 	self->direction = (vec3s) {{
 		cosf(self->pitch) * cosf(self->yaw),
 		sinf(self->pitch),

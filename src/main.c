@@ -4,7 +4,7 @@ State state;
 
 void init(void) {
 	state.window = &window;
-	state.shader = shader_create("res/shaders/shader.vert", "res/shaders/shader.frag");
+	state.shader = shader_create("res/shaders/default.vert", "res/shaders/default.frag");
 	state.texture = texture_create("res/textures/grass.jpg");
 	world_init(&state.world);
 

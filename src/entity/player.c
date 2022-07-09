@@ -36,7 +36,7 @@ void player_tick(Player* self) {
 		movement = glms_vec3_sub(movement, (vec3s) {{ 0.0f, 1.0f, 0.0f }});
 	}
 
-	if (state.window->keyboard.keys[GLFW_KEY_Q].down) {
+	if (state.window->keyboard.keys[GLFW_KEY_ESCAPE].down) {
 		glfwSetWindowShouldClose(state.window->handle, true);
 	}
 
