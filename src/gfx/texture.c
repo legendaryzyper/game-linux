@@ -11,7 +11,7 @@ void texture_init(Texture* self, const char* path) {
 	unsigned char* image = stbi_load(path, &width, &height, &channels, 0);
 
 	glGenTextures(1, &self->handle);
-	glBindTexture(GL_TEXTURE_2D, self->handle);
+    texture_bind(self);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);

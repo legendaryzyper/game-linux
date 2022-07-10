@@ -13,6 +13,7 @@ typedef struct Button {
 typedef struct Mouse {
 	vec2s position, delta;
 	f32 sensitivity;
+    bool delta_update; 
 } Mouse;
 
 typedef struct Keyboard {

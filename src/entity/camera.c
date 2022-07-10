@@ -3,7 +3,6 @@
 
 void camera_init(Camera* self, f32 fov) {
 	memset(self, 0, sizeof(Camera));
-
 	self->fov = fov;
 	self->aspect = (f32)window.size.x / window.size.y;
 	self->znear = 0.1f;
@@ -13,7 +12,7 @@ void camera_init(Camera* self, f32 fov) {
 }
 
 void camera_update(Camera* self) {
-	self->pitch = clamp(self->pitch, -PI_2 + 0.1f, PI_2 - 0.1f);
+	self->pitch = clamp(self->pitch, -PI_2 + 0.01f, PI_2 - 0.01f);
 	self->yaw = self->yaw < -PI ? PI : self->yaw > PI ? -PI : self->yaw;
 
 	self->direction = (vec3s) {{
@@ -25,9 +24,6 @@ void camera_update(Camera* self) {
 
 	self->right = glms_vec3_cross(self->direction, (vec3s) {{ 0.0f, 1.0f, 0.0f }}); 
 	self->up = glms_vec3_cross(self->right, self->direction);
-	self->view = glms_mat4_identity();
-	self->proj = glms_mat4_identity();
-
 	self->view = glms_lookat(self->position, glms_vec3_add(self->position, self->direction), self->up);
 	self->proj = glms_perspective(self->fov, self->aspect, self->znear, self->zfar);
 }

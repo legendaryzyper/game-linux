@@ -42,8 +42,9 @@ void destroy(void) {
 	world_destroy(&state.world);
 }
 
-int main() {
+int main(int argc, char** argv) {
 	window_create(init, tick, update, render, destroy);
 	window_loop();
+
     return 0;
 }

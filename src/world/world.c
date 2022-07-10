@@ -4,6 +4,7 @@ void world_init(World* self) {
 	memset(self, 0, sizeof(World));
 	player_init(&self->player);
 	chunk_init(&self->chunk);
+
 	for (s32 x = 0; x < 16; x++) {
 		for (s32 z = 0; z < 16; z++) {
 			for (s32 y = 0; y < 2; y++) {

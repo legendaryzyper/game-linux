@@ -41,10 +41,9 @@ struct {
 
 void mesh_init(Mesh* self) {
 	memset(self, 0, sizeof(Mesh));
-
     vao_init(&self->vao);
-	vbo_init(&self->vbo, GL_ARRAY_BUFFER);
-	vbo_init(&self->ebo, GL_ELEMENT_ARRAY_BUFFER);
+	bo_init(&self->vbo, GL_ARRAY_BUFFER);
+	bo_init(&self->ebo, GL_ELEMENT_ARRAY_BUFFER);
 }
 
 void mesh_prepare(Mesh* self) {
@@ -91,27 +90,27 @@ void mesh_finalize(Mesh* self) {
 		buffer->index = 0;
 	}
 
-	vbo_buffer(&self->vbo, self->data.data, self->data.count * sizeof(f32));
-	vbo_buffer(&self->ebo, self->indices.data, self->indices.count * sizeof(u32));	
+	bo_buffer(&self->vbo, self->data.data, self->data.count * sizeof(f32));
+	bo_buffer(&self->ebo, self->indices.data, self->indices.count * sizeof(u32));	
 }
 
 void mesh_render(Mesh* self) {
 	shader_bind(&state.shader);
+    shader_uniform_mat4(&state.shader, "m", glms_translate(glms_mat4_identity(), (vec3s) {{ 0.0f, 0.0f, 0.0f }}));
 	shader_uniform_camera(&state.shader, &state.world.player.camera);
-	shader_uniform_mat4(&state.shader, "m", glms_translate(glms_mat4_identity(), (vec3s) {{ 0.0f, 0.0f, 0.0f }}));
 	shader_uniform_texture2D(&state.shader, "tex", &state.texture, 0);	
 
-	const size_t vertex_size = 5 * sizeof(f32);
-	vao_attrib(&self->vao, &self->vbo, 0, 3, GL_FLOAT, vertex_size, 0 * sizeof(f32));
-	vao_attrib(&self->vao, &self->vbo, 1, 2, GL_FLOAT, vertex_size, 3 * sizeof(f32));
+	const size_t data_stride = 5 * sizeof(f32);
+	vao_attrib(&self->vao, &self->vbo, 0, 3, GL_FLOAT, data_stride, 0 * sizeof(f32));
+	vao_attrib(&self->vao, &self->vbo, 1, 2, GL_FLOAT, data_stride, 3 * sizeof(f32));
 
 	vao_bind(&self->vao);
-	vbo_bind(&self->ebo);
+	bo_bind(&self->ebo);
 	glDrawElements(GL_TRIANGLES, self->indices.count, GL_UNSIGNED_INT, NULL);
 }
 
 void mesh_destroy(Mesh* self) {
 	vao_destroy(&self->vao);
-	vbo_destroy(&self->vbo);
-	vbo_destroy(&self->ebo);
+	bo_destroy(&self->vbo);
+	bo_destroy(&self->ebo);
 }

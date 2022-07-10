@@ -4,9 +4,10 @@
 #include "../gfx/gfx.h"
 #include "../util/util.h"
 
-#include "../gfx/vbo.h"
+#include "../gfx/bo.h"
 #include "../gfx/vao.h"
 #include "../gfx/texture.h"
+#include "../gfx/shader.h"
 
 typedef struct MeshBuffer {
 	void* data;
@@ -18,7 +19,7 @@ typedef struct Mesh {
 	u64 vertex_count;
 
 	VAO vao;
-	VBO vbo, ebo;
+	BO vbo, ebo;
 } Mesh;
 
 void mesh_init(Mesh* self);

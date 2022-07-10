@@ -27,7 +27,7 @@ static void _key_callback(GLFWwindow* handle, int key, int scancode, int action,
 static void _cursor_callback(GLFWwindow* handle, double xp, double yp) {
 	vec2s p = {{ xp, yp }};
 
-	window.mouse.delta = glms_vec2_sub(p, window.mouse.position);
+    window.mouse.delta = window.mouse.delta_update ? glms_vec2_sub(p, window.mouse.position) : glms_vec2_zero(), window.mouse.delta_update = 1;
 	window.mouse.delta.x = clamp(window.mouse.delta.x, -100.0f, 100.0f);
 	window.mouse.delta.y = clamp(window.mouse.delta.y, -100.0f, 100.0f);
 
@@ -99,9 +99,6 @@ static void _destroy(void) {
 
 void window_loop(void) {
 	_init();
-
-    // ignore the first poll since it fucks up the mouse position (maybe a glfw bug idk)
-	glfwPollEvents();
 
 	while (!glfwWindowShouldClose(window.handle)) {
 		const u64 now = NOW();
