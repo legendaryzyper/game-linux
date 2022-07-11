@@ -25,8 +25,8 @@
 
 typedef struct Chunk {
     u32* data;
-    bool dirty;
     Mesh mesh;
+    bool dirty;
 } Chunk;
 
 bool chunk_pos_in_bounds(ivec3s pos);

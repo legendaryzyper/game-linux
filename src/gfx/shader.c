@@ -42,6 +42,12 @@ void shader_bind(Shader* self) {
 	glUseProgram(self->handle);
 }
 
+void shader_uniform_texture2D(Shader* self, const char* name, Texture* texture, GLuint n) {
+    glActiveTexture(GL_TEXTURE0 + n);
+    texture_bind(texture);
+    glUniform1i(glGetUniformLocation(self->handle, (const GLchar*)name), n);
+}
+
 void shader_uniform_mat4(Shader* self, const char* name, mat4s m) {
     glUniformMatrix4fv(glGetUniformLocation(self->handle, name), 1, GL_FALSE, (const GLfloat*)&m.raw);
 }
@@ -49,10 +55,4 @@ void shader_uniform_mat4(Shader* self, const char* name, mat4s m) {
 void shader_uniform_camera(Shader* self, Camera* camera) {
     shader_uniform_mat4(self, "v", camera->view);
     shader_uniform_mat4(self, "p", camera->proj);
-}
-
-void shader_uniform_texture2D(Shader* self, const char* name, Texture* texture, GLuint n) {
-    glActiveTexture(GL_TEXTURE0 + n);
-    texture_bind(texture);
-    glUniform1i(glGetUniformLocation(self->handle, (const GLchar*)name), n);
 }

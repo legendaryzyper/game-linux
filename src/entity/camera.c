@@ -7,7 +7,7 @@ void camera_init(Camera* self, f32 fov) {
 	self->aspect = (f32)window.size.x / window.size.y;
 	self->znear = 0.1f;
 	self->zfar = 100.0f;
-	self->yaw = 0.0f;
+	self->yaw = -PI_2;
 	self->pitch = 0.0f;
 }
 

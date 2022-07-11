@@ -4,8 +4,8 @@
 #include "gfx.h"
 #include "../util/util.h"
 
-#include "../entity/camera.h"
 #include "texture.h"
+#include "../entity/camera.h"
 
 typedef struct VertexAttrib {
 	GLuint index;
@@ -19,8 +19,8 @@ typedef struct Shader {
 void shader_init(Shader* self, const char* vs_path, const char* fs_path);
 void shader_destroy(Shader* self);
 void shader_bind(Shader* self);
+void shader_uniform_texture2D(Shader* self, const char* name, Texture* texture, GLuint n);
 void shader_uniform_mat4(Shader* self, const char* name, mat4s m);
 void shader_uniform_camera(Shader* self, Camera* camera);
-void shader_uniform_texture2D(Shader* self, const char* name, Texture* texture, GLuint n);
 
 #endif

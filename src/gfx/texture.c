@@ -1,7 +1,7 @@
+#include "texture.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
-#include "texture.h"
 
 void texture_init(Texture* self, const char* path) {
     memset(self, 0, sizeof(Texture));
@@ -19,6 +19,7 @@ void texture_init(Texture* self, const char* path) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
 	stbi_image_free(image);
 }
 

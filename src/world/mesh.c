@@ -1,5 +1,7 @@
 #include "mesh.h"
 #include "../state.h"
+#include "../gfx/shader.h"
+#include "../gfx/texture.h"
 
 const u32 FACE_INDICES[] = { 1, 0, 3, 1, 3, 2 };
 const u32 UNIQUE_INDICES[] = { 1, 0, 5, 2 };

@@ -6,8 +6,6 @@
 
 #include "../gfx/bo.h"
 #include "../gfx/vao.h"
-#include "../gfx/texture.h"
-#include "../gfx/shader.h"
 
 typedef struct MeshBuffer {
 	void* data;

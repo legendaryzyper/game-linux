@@ -47,7 +47,7 @@ void player_tick(Player* self) {
 }
 
 void player_update(Player* self) {
+    self->camera.yaw += state.window->mouse.delta.x / (((f32)state.window->frame_delta) / (state.window->mouse.sensitivity * 10000.0f));
 	self->camera.pitch -= state.window->mouse.delta.y / (((f32)state.window->frame_delta) / (state.window->mouse.sensitivity * 10000.0f));
-	self->camera.yaw += state.window->mouse.delta.x / (((f32)state.window->frame_delta) / (state.window->mouse.sensitivity * 10000.0f));
     camera_update(&self->camera);
 }
