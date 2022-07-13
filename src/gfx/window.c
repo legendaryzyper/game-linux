@@ -27,7 +27,8 @@ static void _key_callback(GLFWwindow* handle, int key, int scancode, int action,
 static void _cursor_callback(GLFWwindow* handle, double xp, double yp) {
 	vec2s p = {{ xp, yp }};
 
-    window.mouse.delta = window.mouse.not_first ? glms_vec2_sub(p, window.mouse.position) : glms_vec2_zero(), window.mouse.not_first = 1;
+    window.mouse.delta = window.mouse.not_first ? 
+        glms_vec2_sub(p, window.mouse.position) : GLMS_VEC2_ZERO, window.mouse.not_first = 1;
 	window.mouse.delta.x = clamp(window.mouse.delta.x, -100.0f, 100.0f);
 	window.mouse.delta.y = clamp(window.mouse.delta.y, -100.0f, 100.0f);
 
@@ -45,8 +46,8 @@ void window_create(FWindow init, FWindow tick, FWindow update, FWindow render, F
 	window.last_second = NOW();
 
 	window.size = (ivec2s) {{ 1200, 720 }};
-	window.tickrate = 120;
-	window.mouse.sensitivity = 2.0f;
+	window.tickrate = 128;
+	window.mouse.sensitivity = 3.0f;
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

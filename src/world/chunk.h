@@ -11,7 +11,7 @@
 #define CHUNK_VOLUME (CHUNK_SIZE.x * CHUNK_SIZE.y * CHUNK_SIZE.z)
 
 #define chunk_foreach(_pname)\
-    ivec3s _pname = GLMS_IVEC3_ZERO_INIT;\
+    ivec3s _pname = GLMS_IVEC3_ZERO;\
     for (s32 x = 0; x < CHUNK_SIZE.x; x++)\
         for (s32 y = 0; y < CHUNK_SIZE.y; y++)\
             for (s32 z = 0;\
@@ -21,7 +21,7 @@
                 ((_pname.z = z) != INT32_MAX);\
                 z++)
 
-#define chunk_pos_to_index(_p) ((_p).x * CHUNK_SIZE.y * CHUNK_SIZE.z + (_p).y * CHUNK_SIZE.z + (_p).z)
+#define chunk_pos_to_index(_p) (_p.x * CHUNK_SIZE.y * CHUNK_SIZE.z + _p.y * CHUNK_SIZE.z + _p.z)
 
 typedef struct Chunk {
     u32* data;

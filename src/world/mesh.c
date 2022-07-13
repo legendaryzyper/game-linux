@@ -33,8 +33,8 @@ const f32 CUBE_UVS[] = {
 	1, 1
 };
 
-#define DATA_BUFFER_SIZE (16 * 256 * 16) * 40
-#define INDICES_BUFFER_SIZE (16 * 256 * 16) * 36
+#define DATA_BUFFER_SIZE 16 * 256 * 16 * 120
+#define INDICES_BUFFER_SIZE 16 * 256 * 16 * 36
 
 struct {
 	f32 data[DATA_BUFFER_SIZE];
@@ -64,12 +64,12 @@ void mesh_prepare(Mesh* self) {
 	}
 }
 
-void mesh_emit_face(Mesh* mesh, vec3s position, Direction d) {
+void mesh_emit_face(Mesh* mesh, vec3s pos, Direction d) {
 	for (u32 i = 0; i < 4; i++) {
 		const f32 *vertex = &CUBE_VERTICES[CUBE_INDICES[(d * 6) + UNIQUE_INDICES[i]] * 3];
-		((f32*)mesh->data.data)[mesh->data.index++] = position.x + vertex[0];
-		((f32*)mesh->data.data)[mesh->data.index++] = position.y + vertex[1];
-		((f32*)mesh->data.data)[mesh->data.index++] = position.z + vertex[2];
+		((f32*)mesh->data.data)[mesh->data.index++] = pos.x + vertex[0];
+		((f32*)mesh->data.data)[mesh->data.index++] = pos.y + vertex[1];
+		((f32*)mesh->data.data)[mesh->data.index++] = pos.z + vertex[2];
 		((f32*)mesh->data.data)[mesh->data.index++] = CUBE_UVS[(i * 2) + 0];
 		((f32*)mesh->data.data)[mesh->data.index++] = CUBE_UVS[(i * 2) + 1];
 	}
@@ -83,7 +83,7 @@ void mesh_emit_face(Mesh* mesh, vec3s position, Direction d) {
 
 void mesh_finalize(Mesh* self) {
 	MeshBuffer* buffers[2] = {
-			&self->data, &self->indices
+		&self->data, &self->indices
 	};
 
 	for (u32 i = 0; i < 2; i++) {
